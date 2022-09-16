@@ -14,7 +14,7 @@
 
 SA_TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
 
-RESPONSE=$(curl -L --request POST --data-raw "{\"jwt\":\"${SA_TOKEN}\", \"role\":\"${VAULT_ROLE}\"}" ${VAULT_ADDR}/v1/auth/${K8S_AUTH_PATH}/login)
+RESPONSE=$(curl --silent --location --request POST --data-raw "{\"jwt\":\"${SA_TOKEN}\", \"role\":\"${VAULT_ROLE}\"}" ${VAULT_ADDR}/v1/auth/${K8S_AUTH_PATH}/login)
 
 CLIENT_TOKEN=$(echo "${RESPONSE}" | jq -r .auth.client_token)
 

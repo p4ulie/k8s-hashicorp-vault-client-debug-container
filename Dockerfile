@@ -3,6 +3,7 @@ FROM bash
 ADD get_token_k8s_auth.sh /
 
 RUN chmod u+x /get_token_k8s_auth.sh && \
+    apk add --no-cache man && \
     apk add --no-cache curl && \
     apk add --no-cache jq && \
     apk add --no-cache vault libcap && \
